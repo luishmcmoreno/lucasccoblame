@@ -2,11 +2,12 @@
 import sys
 import subprocess 
 
-def print_result(msg):
+def print_result(msgs):
   sep = '==========================='
   print('')
   print(sep)
-  print msg
+  for msg in msgs:
+    print msg
   print(sep)
   print('')
 
@@ -30,9 +31,10 @@ result = subprocess.check_output(gitblame)
 
 culprit = result.split(' (')[1].split(' 20')[0]
 
-msg = ''
+msg = []
+msg.append(result)
 if culprit == 'Lucas Correa':
-  msg = 'Nao podia ser diferente, lucascco eh o culpado por essa cagada! :)'
+  msg.append('Nao podia ser diferente, lucascco eh o culpado por essa cagada! :)')
 else:
-  msg = ':( Infelizmente o culpado por essa cagada eh o ' + culprit + ', mas, temos conviccao que foi em pair programming com lucascco.'
+  msg.append(':( Infelizmente o culpado por essa cagada eh o ' + culprit + ', mas, temos conviccao que foi em pair programming com lucascco.')
 print_result(msg)
